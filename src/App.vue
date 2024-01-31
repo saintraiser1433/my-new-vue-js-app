@@ -1,7 +1,8 @@
 <template>
   <nav>
     <router-link to="/">Employees</router-link> |
-    <router-link to="/languages">Languages</router-link>
+    <router-link to="/languages">Languages</router-link> |
+    <router-link to="/testing">Testing</router-link>
   </nav>
   <router-view/>
 </template>
