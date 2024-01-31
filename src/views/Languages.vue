@@ -5,10 +5,10 @@
         <ul>
             <li v-for="note in notes" :key="note"> {{ note }}</li>
         </ul>
-        <input type="text" v-model="title" @keypress.enter="save"/>
+        <input type="text" v-model="title" @keypress.enter="save" />
     </div>
     <div>
-        Total Notes {{ times2 }}
+        Total Notes {{ totalNotes }}
     </div>
 
 
@@ -17,33 +17,27 @@
 </template>
 
 <script>
-import {useStore} from 'vuex'
 import { ref } from "vue";
-import { useGetters,useState,useAction } from '../store/helpers'
-// import { mapGetters, reactive, toRefs } from 'vuex';
+import { useActions, useGetters, useState } from "vuex-composition-helpers";
 
 export default {
     name: 'LanguageView',
-    setup(){
+    setup() {
         const title = ref('')
-        const store = useStore()
-        function save(){
-            // notes.value.push(title.value)
-            // title.value = ''
-            // store.dispatch("saveNote")
-            useAction(['saveNote'],title.value)
+        const { notes } = useState(['notes']);
+        const { totalNotes } = useGetters(['totalNotes']);
+        const { saveNote } = useActions(['saveNote']);
+        // const store = useStore()
+        function save() {
+            saveNote(title.value)
             title.value='';
         }
-        const { times2 } = useGetters(['totalNotes'])
-        const { notes } = useState(['notes'])
-        // const notes = computed(() => store.state.notes)
-        // const totalNotes = computed(() => store.getters.totalNotes)
+
         return {
             notes,
             title,
             save,
-            times2
-            // totalNotes
+            totalNotes
         }
     }
 

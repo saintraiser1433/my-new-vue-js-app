@@ -1,6 +1,6 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
 // import { post } from "./post.module";
-const store = createStore({
+const stores = createStore({
     state: {
         title: 'Vuex Store',
         notes: []
@@ -26,4 +26,4 @@ const store = createStore({
     }
 });
 
-export default store;
+export default stores;
